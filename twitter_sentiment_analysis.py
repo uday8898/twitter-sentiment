@@ -16,9 +16,13 @@ api = tweepy.API(auth)
 
 # Function to fetch tweets
 def fetch_tweets(query, count=100):
-    tweets = tweepy.Cursor(api.search_tweets, q=query, lang='en').items(count)
-    tweets_list = [[tweet.text, tweet.created_at, tweet.user.screen_name] for tweet in tweets]
-    return tweets_list
+    try:
+        tweets = tweepy.Cursor(api.search_tweets, q=query, lang='en').items(count)
+        tweets_list = [[tweet.text, tweet.created_at, tweet.user.screen_name] for tweet in tweets]
+        return tweets_list
+    except tweepy.errors.TweepyException as e:
+        st.error(f"Error fetching tweets: {e}")
+        return []
 
 # Function to analyze sentiment
 def analyze_sentiment(tweet):
@@ -39,11 +43,14 @@ count = st.slider("Number of tweets to fetch:", 10, 200, 50)
 if st.button("Fetch Tweets"):
     with st.spinner("Fetching tweets..."):
         tweets = fetch_tweets(query, count)
-        df = pd.DataFrame(tweets, columns=['Tweet', 'Date', 'User'])
-        df['Sentiment'] = df['Tweet'].apply(analyze_sentiment)
+        if tweets:
+            df = pd.DataFrame(tweets, columns=['Tweet', 'Date', 'User'])
+            df['Sentiment'] = df['Tweet'].apply(analyze_sentiment)
 
-        st.success("Tweets fetched successfully!")
-        st.write(df)
+            st.success("Tweets fetched successfully!")
+            st.write(df)
 
-        sentiment_count = df['Sentiment'].value_counts()
-        st.bar_chart(sentiment_count)
+            sentiment_count = df['Sentiment'].value_counts()
+            st.bar_chart(sentiment_count)
+        else:
+            st.warning("No tweets fetched. Please check your API keys and permissions.")
