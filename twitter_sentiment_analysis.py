@@ -4,10 +4,10 @@ from textblob import TextBlob
 import pandas as pd
 
 # Set up Twitter API credentials
-API_KEY = 'KsFWstknpOxIjvRa5jjO2uMq3'
-API_SECRET_KEY = 'G3JROXUz8VWqfi9wFLX0h74Vq1eDbn8XdEMSw7dQesLiacKIWs'
-ACCESS_TOKEN = '1263007663291371520-vt1UUcTgQltRJzvXalODbuK36eqUTa'
-ACCESS_TOKEN_SECRET = 'zIBur8lEKOA8jD4StK0o25mCeenE42OtFnKsNlQdFd7HJ'
+API_KEY = 'aunIg4HcrcilMtAfffQdW1BYW'
+API_SECRET_KEY = '266jLR4esR0Zn9yrr2aU2HtyPAOCIJLoxliuXDGcpgzEubbDto'
+ACCESS_TOKEN = '1263007663291371520-MXjEzr16cpEDbu5Ps6FTbvcsOIpIKu'
+ACCESS_TOKEN_SECRET = 'bWw4kmIAnnyAls4oUKJem0fD3tQ6QMoAyyvrhjmedsycC'
 
 # Authenticate with Twitter API
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
