@@ -1,3 +1,7 @@
+pip install tweepy
+pip install textblob
+pip install pandas
+pip install streamlit
 import streamlit as st
 import tweepy
 from textblob import TextBlob
