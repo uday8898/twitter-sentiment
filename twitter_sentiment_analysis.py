@@ -1,4 +1,4 @@
-pip install streamlit tweepy textblob
+pip install streamlit 
 import streamlit as st
 import tweepy
 from textblob import TextBlob
